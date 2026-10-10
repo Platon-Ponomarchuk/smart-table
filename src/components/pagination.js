@@ -1,4 +1,4 @@
-import { getPages } from "../lib/utils.js";
+import { getPages } from '../lib/utils.js';
 
 export const initPagination = ({ pages, fromRow, toRow, totalRows }, createPage) => {
     // @todo: #2.3 — подготовить шаблон кнопки для страницы и очистить контейнер
@@ -13,11 +13,21 @@ export const initPagination = ({ pages, fromRow, toRow, totalRows }, createPage)
         let page = state.page;
 
         // @todo: #2.6 — обработать действия
-        if (action) switch (action.name) {
-            case 'prev': page = Math.max(1, page - 1); break;
-            case 'next': page = Math.min(pageCount, page + 1); break;
-            case 'first': page = 1; break;
-            case 'last': page = pageCount; break;
+        if (action) {
+            switch (action.name) {
+                case 'prev':
+                    page = Math.max(1, page - 1);
+                    break;
+                case 'next':
+                    page = Math.min(pageCount, page + 1);
+                    break;
+                case 'first':
+                    page = 1;
+                    break;
+                case 'last':
+                    page = pageCount;
+                    break;
+            }
         }
         page = Math.max(1, Math.min(page, pageCount));
 
@@ -41,4 +51,4 @@ export const initPagination = ({ pages, fromRow, toRow, totalRows }, createPage)
     };
 
     return { applyPagination, updatePagination };
-}
+};

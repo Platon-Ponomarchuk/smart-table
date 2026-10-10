@@ -1,21 +1,18 @@
-import './fonts/ys-display/fonts.css'
-import './style.css'
+import './fonts/ys-display/fonts.css';
+import './style.css';
 
-import { data as sourceData } from "./data/dataset_1.js";
+import { initData } from './data.js';
+import { processFormData } from './lib/utils.js';
 
-import { initData } from "./data.js";
-import { processFormData } from "./lib/utils.js";
-
-import { initTable } from "./components/table.js";
+import { initTable } from './components/table.js';
 // @todo: подключение
-import { initPagination } from "./components/pagination.js";
-import { initSorting } from "./components/sorting.js";
-import { initFiltering } from "./components/filtering.js";
-import { initSearching } from "./components/searching.js";
+import { initPagination } from './components/pagination.js';
+import { initSorting } from './components/sorting.js';
+import { initFiltering } from './components/filtering.js';
+import { initSearching } from './components/searching.js';
 
-
-// Исходные данные используемые в render()
-const api = initData(sourceData);
+// API для получения данных с сервера
+const api = initData();
 
 /**
  * Сбор и обработка полей из таблицы
@@ -38,7 +35,7 @@ function collectState() {
  * @param {HTMLButtonElement?} action
  */
 async function render(action) {
-    let state = collectState(); // состояние полей из таблицы
+    const state = collectState(); // состояние полей из таблицы
     let query = {}; // здесь будут формироваться параметры запроса
     // @todo: использование
     query = applySearching(query, state, action);
@@ -87,7 +84,6 @@ const { applyPagination, updatePagination } = initPagination(
         return el;
     }
 );
-
 
 const appRoot = document.querySelector('#app');
 appRoot.appendChild(sampleTable.container);

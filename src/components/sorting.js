@@ -1,4 +1,4 @@
-import {sortMap} from "../lib/sort.js";
+import { sortMap } from '../lib/sort.js';
 
 export function initSorting(columns) {
     return (query, state, action) => {
@@ -29,5 +29,5 @@ export function initSorting(columns) {
 
         const sort = (field && order !== 'none') ? `${field}:${order}` : null;
         return sort ? Object.assign({}, query, { sort }) : query;
-    }
+    };
 }
