@@ -1,11 +1,11 @@
-import {getPages} from "../lib/utils.js";
+import { getPages } from "../lib/utils.js";
 
-export const initPagination = ({pages, fromRow, toRow, totalRows}, createPage) => {
+export const initPagination = ({ pages, fromRow, toRow, totalRows }, createPage) => {
     // @todo: #2.3 — подготовить шаблон кнопки для страницы и очистить контейнер
     const pageTemplate = pages.firstElementChild.cloneNode(true);
     pages.firstElementChild.remove();
 
-    let pageCount;
+    let pageCount = 1;
 
     const applyPagination = (query, state, action) => {
         // @todo: #2.1 — посчитать количество страниц, объявить переменные и константы
@@ -21,10 +21,10 @@ export const initPagination = ({pages, fromRow, toRow, totalRows}, createPage) =
         }
         page = Math.max(1, Math.min(page, pageCount));
 
-        return Object.assign({}, query, {limit, page});
+        return Object.assign({}, query, { limit, page });
     };
 
-    const updatePagination = (total, {page, limit}) => {
+    const updatePagination = (total, { page, limit }) => {
         pageCount = Math.ceil(total / limit);
 
         // @todo: #2.4 — получить список видимых страниц и вывести их
@@ -40,5 +40,5 @@ export const initPagination = ({pages, fromRow, toRow, totalRows}, createPage) =
         totalRows.textContent = total;
     };
 
-    return {applyPagination, updatePagination};
+    return { applyPagination, updatePagination };
 }
